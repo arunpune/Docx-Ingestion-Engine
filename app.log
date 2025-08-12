@@ -2939,3 +2939,102 @@ Note that I removed the currency symbols, kept only numbers and decimal points f
 2025-08-11 15:37:53,958 - invoice_extraction_bot - INFO - Created folder: https://drive.google.com/drive/folders/1Li9vUSh0E0uH0L7ueSFRvzC9TehzqRVP
 2025-08-11 15:38:02,270 - invoice_extraction_bot - INFO - Successfully processed email and saved to: https://drive.google.com/drive/folders/1Li9vUSh0E0uH0L7ueSFRvzC9TehzqRVP
 2025-08-11 15:38:02,271 - invoice_extraction_bot - INFO - Processed 1 insurance emails
+2025-08-12 10:47:41,800 - invoice_extraction_bot - INFO - Initialized Groq model.
+2025-08-12 10:47:55,479 - invoice_extraction_bot - INFO - Connecting to email server...
+2025-08-12 10:47:56,965 - invoice_extraction_bot - INFO - Successfully connected to email server
+2025-08-12 10:48:02,675 - invoice_extraction_bot - INFO - Normal check: only looking for unread emails
+2025-08-12 10:48:02,676 - invoice_extraction_bot - INFO - Found 1 emails to check
+2025-08-12 10:48:03,273 - invoice_extraction_bot - INFO - Found insurance email, processing...
+2025-08-12 10:48:03,274 - invoice_extraction_bot - INFO - Processing email: Fwd: Insurance
+2025-08-12 10:48:03,277 - invoice_extraction_bot - INFO - Found 1 invoice files to process
+2025-08-12 10:48:03,277 - invoice_extraction_bot - INFO - Processing invoice files...
+2025-08-12 10:48:03,290 - invoice_extraction_bot - INFO - Processing 1 files
+2025-08-12 10:48:03,291 - invoice_extraction_bot - INFO - Processing file: invoice_1001329.pdf
+2025-08-12 10:48:03,291 - invoice_extraction_bot - INFO - File type: application/pdf
+2025-08-12 10:48:03,292 - invoice_extraction_bot - INFO - Processing as PDF file
+2025-08-12 10:48:03,293 - invoice_extraction_bot - INFO - PDF file size: 24121 bytes
+2025-08-12 10:48:03,293 - invoice_extraction_bot - INFO - Starting PDF text extraction.
+2025-08-12 10:48:03,295 - invoice_extraction_bot - INFO - PDF has 1 pages
+2025-08-12 10:48:03,296 - invoice_extraction_bot - INFO - Processing page 1
+2025-08-12 10:48:03,296 - invoice_extraction_bot - INFO - No text found on page 1, will use OCR
+2025-08-12 10:48:03,297 - invoice_extraction_bot - INFO - No text extracted via direct method, proceeding to OCR
+2025-08-12 10:48:03,297 - invoice_extraction_bot - INFO - Starting OCR fallback for scanned PDF.
+2025-08-12 10:48:03,818 - invoice_extraction_bot - INFO - Converted PDF to 1 images
+2025-08-12 10:48:03,818 - invoice_extraction_bot - INFO - Running OCR on page 1
+2025-08-12 10:48:24,757 - invoice_extraction_bot - INFO - OCR extracted 242 characters from page 1
+2025-08-12 10:48:24,757 - invoice_extraction_bot - INFO - OCR extraction completed. Total characters: 243
+2025-08-12 10:48:24,758 - invoice_extraction_bot - DEBUG - OCR text preview: EXCELCULT.COM
+Bill To
+Ms.Santoshi
+ExcelCult
+Mumbai , India
+India
+Santoshvarma0988@gmail.com
+9999999999
+Invoice no
+1001329
+Date
+5/4/2023
+Description
+Quantity
+Unit price
+Amount
+Office Chair
+2
+S1,100.00
+...
+2025-08-12 10:48:24,763 - invoice_extraction_bot - INFO - Extracted 243 characters of text from invoice_1001329.pdf
+2025-08-12 10:48:24,764 - invoice_extraction_bot - DEBUG - Raw text preview: EXCELCULT.COM
+Bill To
+Ms.Santoshi
+ExcelCult
+Mumbai , India
+India
+Santoshvarma0988@gmail.com
+9999999999
+Invoice no
+1001329
+Date
+5/4/2023
+Description
+Quantity
+Unit price
+Amount
+Office Chair
+2
+S1,100.00
+S2,200.00
+Total
+S2,200.00
+System Generated
+...
+2025-08-12 10:48:24,764 - invoice_extraction_bot - INFO - Extracting data from 243 characters of text
+2025-08-12 10:48:24,765 - invoice_extraction_bot - INFO - Sending data to Groq API for extraction.
+2025-08-12 10:48:25,749 - invoice_extraction_bot - DEBUG - Groq API Response: Here is the extracted data in the expected JSON format:
+
+{
+  "Invoice no.": "1001329",
+  "Description": "Office Chair",
+  "Quantity": "2",
+  "Date": "5/4/2023",
+  "Unit price": "1100.00",
+  "Amount": "2200.00",
+  "Total": "2200.00",
+  "Email": "Santoshvarma0988@gmail.com",
+  "Phone number": "9999999999",
+  "Address": "Mumbai, India"
+}
+
+Note that I removed the currency symbols, kept only numbers and decimal points for numeric values, and used double quotes for JSON keys and values. I also used 'N/A' for fields that were not found.
+2025-08-12 10:48:25,749 - invoice_extraction_bot - INFO - Successfully parsed JSON response
+2025-08-12 10:48:25,749 - invoice_extraction_bot - INFO - Parsing extracted JSON data
+2025-08-12 10:48:25,750 - invoice_extraction_bot - INFO - Successfully parsed data: ['Invoice no.', 'Description', 'Quantity', 'Date', 'Unit price', 'Amount', 'Total', 'Email', 'Phone number', 'Address']
+2025-08-12 10:48:25,750 - invoice_extraction_bot - DEBUG - Parsed Data Dict: {'Invoice no.': '1001329', 'Description': 'Office Chair', 'Quantity': '2', 'Date': '5/4/2023', 'Unit price': '1100.00', 'Amount': '2200.00', 'Total': '2200.00', 'Email': 'Santoshvarma0988@gmail.com', 'Phone number': '9999999999', 'Address': 'Mumbai, India'}
+2025-08-12 10:48:25,750 - invoice_extraction_bot - INFO - Processing single line item
+2025-08-12 10:48:25,754 - invoice_extraction_bot - DEBUG - Added row: {'Invoice no.': '1001329', 'Description': 'Office Chair', 'Quantity': '2', 'Date': '5/4/2023', 'Unit price': '1100.00', 'Amount': '2200.00', 'Total': '2200.00', 'Email': 'Santoshvarma0988@gmail.com', 'Phone number': '9999999999', 'Address': 'Mumbai, India'}
+2025-08-12 10:48:25,754 - invoice_extraction_bot - INFO - Data extraction process completed. Processed 1 records.
+2025-08-12 10:48:25,754 - invoice_extraction_bot - INFO - Successfully extracted data from 1 invoice items
+2025-08-12 10:48:26,086 - invoice_extraction_bot - INFO - Creating Google Drive folder: Invoice_Processing_20250812_104826
+2025-08-12 10:48:27,044 - invoice_extraction_bot - INFO - Created folder: https://drive.google.com/drive/folders/1c8bcUWdfT0yIf43xNlUA1bXqOFwFGYzr
+2025-08-12 10:48:34,339 - invoice_extraction_bot - INFO - Successfully processed email and saved to: https://drive.google.com/drive/folders/1c8bcUWdfT0yIf43xNlUA1bXqOFwFGYzr
+2025-08-12 10:48:34,339 - invoice_extraction_bot - INFO - Processed 1 insurance emails
